@@ -187,8 +187,6 @@ enum {
 #pragma mark logic
 
 - (void)initViews {
-    self.title = UA_PU_TR(@"UA_Push_Settings_Title");
-
     UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
     if (type == UIRemoteNotificationTypeNone || ![UAPush shared].pushEnabled) {
         pushEnabledSwitch.on = NO;
