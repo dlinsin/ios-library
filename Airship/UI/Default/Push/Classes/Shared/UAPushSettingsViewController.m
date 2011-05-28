@@ -173,11 +173,14 @@ enum {
 #pragma mark -
 #pragma mark UITableVieDelegate Methods
 - (void)tableView:(UITableView *)view didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 1 || indexPath.row == 2) {
+    if (indexPath.row == previousSelection.row && pickerDisplayed) {
+        [self updateDatePicker:NO];
+    } else if (indexPath.row == 1 || indexPath.row == 2) {
         [self updateDatePicker:YES];
     } else {
         [self updateDatePicker:NO];
     }
+    previousSelection = indexPath;
 }
 
 #pragma mark -
@@ -185,10 +188,6 @@ enum {
 
 - (void)initViews {
     self.title = UA_PU_TR(@"UA_Push_Settings_Title");
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                            target:self
-                                                                                            action:@selector(quit)]
-                                              autorelease];
 
     UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
     if (type == UIRemoteNotificationTypeNone || ![UAPush shared].pushEnabled) {
@@ -321,7 +320,7 @@ IF_IOS4_OR_GREATER (
         [now release];
         return;
     }
-
+    [self quit];
 }
 
 - (IBAction)switchValueChanged:(id)sender {
@@ -332,7 +331,7 @@ IF_IOS4_OR_GREATER (
         [self updateDatePicker:NO];
     }
     [self.tableView reloadData];
-
+    [self quit];
 }
 
 - (void)updateDatePicker:(BOOL)show {

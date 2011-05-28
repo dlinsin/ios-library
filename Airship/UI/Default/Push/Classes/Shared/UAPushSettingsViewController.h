@@ -40,6 +40,7 @@
 
     IBOutlet UIDatePicker *datePicker;
     CGRect pickerShownFrame, pickerHiddenFrame;
+    NSIndexPath *previousSelection;
     
   @private
     BOOL dirty;
