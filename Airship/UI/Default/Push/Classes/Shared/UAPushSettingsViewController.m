@@ -199,6 +199,8 @@ enum {
     
     fromCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     toCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    fromCell.textLabel.backgroundColor = [UIColor clearColor];
+    toCell.textLabel.backgroundColor = [UIColor clearColor];
     fromCell.textLabel.text = UA_PU_TR(@"UA_Quiet_Time_From");
     toCell.textLabel.text = UA_PU_TR(@"UA_Quiet_Time_To");
 
@@ -228,7 +230,9 @@ enum {
     [formatter setDateStyle:NSDateFormatterNoStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     fromCell.detailTextLabel.text = [formatter stringFromDate:date1];
+    fromCell.detailTextLabel.backgroundColor = [UIColor clearColor];
     toCell.detailTextLabel.text = [formatter stringFromDate:date2];
+    toCell.detailTextLabel.backgroundColor = [UIColor clearColor];
 
     NSDate *now = [[NSDate alloc] init];
     [datePicker setDate:now animated:NO];
