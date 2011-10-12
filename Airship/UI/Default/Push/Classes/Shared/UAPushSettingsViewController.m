@@ -173,14 +173,14 @@ enum {
 #pragma mark -
 #pragma mark UITableVieDelegate Methods
 - (void)tableView:(UITableView *)view didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == previousSelection.row && pickerDisplayed) {
+    if (indexPath.row == previousSelection && pickerDisplayed) {
         [self updateDatePicker:NO];
     } else if (indexPath.row == 1 || indexPath.row == 2) {
         [self updateDatePicker:YES];
     } else {
         [self updateDatePicker:NO];
     }
-    previousSelection = indexPath;
+    previousSelection = indexPath.row;
 }
 
 #pragma mark -
